@@ -251,6 +251,10 @@ void XnSensorFirmwareParams::Free()
 	m_AllFirmwareParams.Clear();
 }
 
+#ifndef _WIN32
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow="
+#endif
 XnStatus XnSensorFirmwareParams::AddFirmwareParam(XnActualIntProperty& Property, XnUInt16 nFirmwareParam, XnFWVer nMinVer /* = XN_SENSOR_FW_VER_UNKNOWN */, XnFWVer nMaxVer /* = XN_SENSOR_FW_VER_UNKNOWN */, XnUInt16 nValueIfNotSupported /* = 0 */)
 {
 	XnStatus nRetVal = XN_STATUS_OK;
@@ -275,6 +279,9 @@ XnStatus XnSensorFirmwareParams::AddFirmwareParam(XnActualIntProperty& Property,
 
 	return (XN_STATUS_OK);
 }
+#ifndef _WIN32
+#pragma GCC diagnostic pop
+#endif
 
 XnStatus XnSensorFirmwareParams::AddFirmwareAudioParam(XnActualIntProperty& Property, XnUInt16 nFirmwareParam, XnFWVer nMinVer /* = XN_SENSOR_FW_VER_3_0 */, XnFWVer nMaxVer /* = XN_SENSOR_FW_VER_UNKNOWN */, XnUInt16 nValueIfNotSupported /* = 0 */)
 {

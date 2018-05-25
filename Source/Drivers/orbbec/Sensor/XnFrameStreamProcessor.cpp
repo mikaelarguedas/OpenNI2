@@ -28,6 +28,10 @@
 //---------------------------------------------------------------------------
 // Code
 //---------------------------------------------------------------------------
+#ifndef _WIN32
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-overflow="
+#endif
 XnFrameStreamProcessor::XnFrameStreamProcessor(XnFrameStream* pStream, XnSensorStreamHelper* pHelper, XnFrameBufferManager* pBufferManager, XnUInt16 nTypeSOF, XnUInt16 nTypeEOF) :
 	XnStreamProcessor(pStream, pHelper),
 	m_nTypeSOF(nTypeSOF),
@@ -45,6 +49,9 @@ XnFrameStreamProcessor::XnFrameStreamProcessor(XnFrameStream* pStream, XnSensorS
 	m_InDump = xnDumpFileOpen(m_csInDumpMask, "%s_0.raw", m_csInDumpMask);
 	m_InternalDump = xnDumpFileOpen(m_csInternalDumpMask, "%s_0.raw", m_csInternalDumpMask);
 }
+#ifndef _WIN32
+#pragma GCC diagnostic pop
+#endif
 
 XnFrameStreamProcessor::~XnFrameStreamProcessor()
 {
