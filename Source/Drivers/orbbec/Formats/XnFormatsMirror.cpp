@@ -43,8 +43,14 @@ XnStatus XnMirrorOneBytePixels(XnUChar* pBuffer, XnUInt32 nBufferSize, XnUInt32 
 	XnUInt8* pSrcEnd = pSrc + nBufferSize;
 	XnUInt8* pDest = NULL;
 	XnUInt8* pDestVal = &pLineBuffer[0] + nLineSize - 1;
+#ifndef _WIN32
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+#endif
 	XnUInt8* pDestEnd = &pLineBuffer[0] - 1;
-
+#ifndef _WIN32
+#pragma GCC diagnostic pop
+#endif
 	if (nLineSize > XN_MIRROR_MAX_LINE_SIZE)
 	{
 		return (XN_STATUS_INTERNAL_BUFFER_TOO_SMALL);
@@ -76,7 +82,14 @@ XnStatus XnMirrorTwoBytePixels(XnUChar* pBuffer, XnUInt32 nBufferSize, XnUInt32 
 	XnUInt16* pSrcEnd = pSrc + nBufferSize / sizeof(XnUInt16);
 	XnUInt16* pDest = NULL;
 	XnUInt16* pDestVal = &pLineBuffer[0] + nLineSize - 1;
+#ifndef _WIN32
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+#endif
 	XnUInt16* pDestEnd = &pLineBuffer[0] - 1;
+#ifndef _WIN32
+#pragma GCC diagnostic pop
+#endif
 	XnUInt16 nMemCpyLineSize = (XnUInt16)(nLineSize * sizeof(XnUInt16));
 	XnUInt16 nValue;
 
@@ -112,7 +125,14 @@ XnStatus XnMirrorThreeBytePixels(XnUChar* pBuffer, XnUInt32 nBufferSize, XnUInt3
 	XnUInt8* pSrcEnd = pSrc + nBufferSize;
 	XnUInt8* pDest = NULL;
 	XnUInt8* pDestVal = &pLineBuffer[0] + nLineSize * 3 - 1;
+#ifndef _WIN32
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
+#endif
 	XnUInt8* pDestEnd = &pLineBuffer[0] - 1;
+#ifndef _WIN32
+#pragma GCC diagnostic pop
+#endif
 	XnUInt16 nMemCpyLineSize = (XnUInt16)(nLineSize * 3);
 
 	if (nMemCpyLineSize > XN_MIRROR_MAX_LINE_SIZE)
